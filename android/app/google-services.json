@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "630723077676",
+    "firebase_url": "https://sc-credenciamento.firebaseio.com",
+    "project_id": "sc-credenciamento",
+    "storage_bucket": "sc-credenciamento.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630723077676:android:91ddf9dc9ca2e4dac6d389",
+        "android_client_info": {
+          "package_name": "com.example.sc_credenciamento"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630723077676-9vm08uk6el3icaudgf59h5fmjnvjr6r7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHT6Eo0vRqTdlEOddVEenD3Y8ay5tNQAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630723077676-9vm08uk6el3icaudgf59h5fmjnvjr6r7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
