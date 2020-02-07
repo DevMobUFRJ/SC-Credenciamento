@@ -49,69 +49,77 @@ class _CredPageState extends State<CredPage> {
         appBar: AppBar(
           title: Text("Credenciamento"),
         ),
-        body: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: <
-                    Widget>[
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed: (){
-              day = 24;
-              _scanQR();
-              },
-            child: const Text('DIA 24',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        body: Center ( 
+          child: buildListViewButtons(),
+        ));
+  }
+
+  buildListViewButtons(){
+        return ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(100.0),
+          children: <Widget>[
+            const SizedBox(height: 0),
+              RaisedButton(
+                color: Colors.white,
+                textColor: Colors.black,
+                onPressed: (){
+                  day = 24;
+                  _scanQR();
+                  },
+                child: const Text('DIA 24',
+                    style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+              ),
+              //Divider(height: 50),
+              const SizedBox(height: 20),
+              RaisedButton(
+                color: Colors.white,
+                textColor: Colors.black,
+                onPressed:(){
+                  day = 25;
+                  _scanQR();
+                  },
+                child: const Text('DIA 25',
+                    style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+              ),
+              //Divider(height: 50),
+              const SizedBox(height: 20),
+              RaisedButton(
+                color: Colors.white,
+                textColor: Colors.black,
+                onPressed:(){
+                  day = 26;
+                  _scanQR();
+                },
+                child: const Text('DIA 26',
+                    style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+              ),
+              //Divider(height: 50),
+              const SizedBox(height: 20),
+              RaisedButton(
+                color: Colors.white,
+                textColor: Colors.black,
+                onPressed:(){
+                  day = 27;
+                  _scanQR();
+                },
+                child: const Text('DIA 27',
+                    style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+              ),
+              //Divider(height: 50),
+              const SizedBox(height: 20),
+              RaisedButton(
+                color: Colors.white,
+                textColor: Colors.black,
+                onPressed:(){
+                  day = 28;
+                  _scanQR();
+                },
+                child: const Text('DIA 28',
+                  style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic))
           ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed:(){
-              day = 25;
-              _scanQR();
-              },
-            child: const Text('DIA 25',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed:(){
-              day = 26;
-              _scanQR();
-            },
-            child: const Text('DIA 26',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed:(){
-              day = 27;
-              _scanQR();
-            },
-            child: const Text('DIA 27',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed:(){
-              day = 28;
-              _scanQR();
-            },
-            child: const Text('DIA 28',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-        ])));
+      ],
+
+    );
   }
 }

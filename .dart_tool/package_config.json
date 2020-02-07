@@ -20,6 +20,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "barcode_scan",
+      "rootUri": "file:///C:/Users/Rafael/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/barcode_scan-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///C:/Users/Rafael/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-1.0.5",
       "packageUri": "lib/",
@@ -176,7 +182,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-02-05T22:42:28.563824Z",
+  "generated": "2020-02-07T18:31:00.311831Z",
   "generator": "pub",
   "generatorVersion": "2.7.0"
 }
