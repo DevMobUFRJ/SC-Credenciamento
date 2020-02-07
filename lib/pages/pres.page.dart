@@ -132,12 +132,39 @@ class _AtivPageState extends State<AtivPage> {
     );
   }
 
+  void _exibirDialogoErr(String atividade) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text("QR Code inválido"),
+          content: new Text("Pressione ok para continuar dando presenças"),
+          actions: <Widget>[
+            // define os botões na base do dialogo
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _scanQR(atividade);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future _scanQR(String atividade) async {
     try {
       String qrResult = await BarcodeScanner.scan();
+      RegExp qrcodeRegex = RegExp(r'^SC-[0-9]{1,}');
       //Future.delayed(const Duration(seconds: 2), () => "2");
       print(qrResult);
-      _exibirDialogo(atividade);
+      if(qrcodeRegex.hasMatch(qrResult)){
+        _exibirDialogo(atividade);
+      }else{
+        _exibirDialogoErr(atividade);
+      }
     } finally {}
   }
 

@@ -30,12 +30,40 @@ class _CredPageState extends State<CredPage> {
     );
   }
 
+  void _exibirDialogoErr(int day) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text("QR Code inválido"),
+          content: new Text("Pressione ok para continuar credenciando"),
+          actions: <Widget>[
+            // define os botões na base do dialogo
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _scanQR(day);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future _scanQR(int day) async {
     try {
       String qrResult = await BarcodeScanner.scan();
+      RegExp qrcodeRegex = RegExp(r'^SC-[0-9]{1,}');
       //Future.delayed(const Duration(seconds: 2), () => "2");
       print(qrResult);
-      _exibirDialogo(day);
+      if(qrcodeRegex.hasMatch(qrResult)){
+        _exibirDialogo(day);
+      }else{
+        _exibirDialogoErr(day);
+      }
+
     } finally {}
   }
 
