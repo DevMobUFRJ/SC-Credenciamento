@@ -9,22 +9,20 @@ class CredPage extends StatefulWidget {
 
 class _CredPageState extends State<CredPage> {
 
-  int day;
-
-  void _exibirDialogo() {
+  void _exibirDialogo(int day) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: new Text("Credenciado com sucesso no dia $day"),
-          content: new Text("pressione ok para continuar credenciando"),
+          content: new Text("Pressione ok para continuar credenciando"),
           actions: <Widget>[
             // define os botões na base do dialogo
             new FlatButton(
               child: new Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
-                _scanQR();
+                _scanQR(day);
               },
             ),
           ],
@@ -33,12 +31,12 @@ class _CredPageState extends State<CredPage> {
     );
   }
 
-  Future _scanQR() async {
+  Future _scanQR(int day) async {
     try {
       String qrResult = await BarcodeScanner.scan();
-      Future.delayed(const Duration(seconds: 2), () => "2");
+      //Future.delayed(const Duration(seconds: 2), () => "2");
       print(qrResult);
-      _exibirDialogo();
+      _exibirDialogo(day);
     } finally {}
   }
 
@@ -58,9 +56,8 @@ class _CredPageState extends State<CredPage> {
             color: Colors.white,
             textColor: Colors.black,
             onPressed: (){
-              day = 24;
-              _scanQR();
-              },
+              _scanQR(24);
+            },
             child: const Text('DIA 24',
                 style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
           ),
@@ -70,9 +67,8 @@ class _CredPageState extends State<CredPage> {
             color: Colors.white,
             textColor: Colors.black,
             onPressed:(){
-              day = 25;
-              _scanQR();
-              },
+              _scanQR(25);
+            },
             child: const Text('DIA 25',
                 style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
           ),
@@ -82,8 +78,7 @@ class _CredPageState extends State<CredPage> {
             color: Colors.white,
             textColor: Colors.black,
             onPressed:(){
-              day = 26;
-              _scanQR();
+              _scanQR(26);
             },
             child: const Text('DIA 26',
                 style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
@@ -94,8 +89,7 @@ class _CredPageState extends State<CredPage> {
             color: Colors.white,
             textColor: Colors.black,
             onPressed:(){
-              day = 27;
-              _scanQR();
+              _scanQR(27);
             },
             child: const Text('DIA 27',
                 style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
@@ -106,8 +100,7 @@ class _CredPageState extends State<CredPage> {
             color: Colors.white,
             textColor: Colors.black,
             onPressed:(){
-              day = 28;
-              _scanQR();
+              _scanQR(28);
             },
             child: const Text('DIA 28',
                 style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
