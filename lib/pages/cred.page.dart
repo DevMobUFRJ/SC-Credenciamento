@@ -8,7 +8,6 @@ class CredPage extends StatefulWidget {
 }
 
 class _CredPageState extends State<CredPage> {
-
   void _exibirDialogo(int day) {
     showDialog(
       context: context,
@@ -48,63 +47,70 @@ class _CredPageState extends State<CredPage> {
           title: Text("Credenciamento"),
         ),
         body: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: <
-                    Widget>[
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed: (){
-              _scanQR(24);
-            },
-            child: const Text('DIA 24',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed:(){
-              _scanQR(25);
-            },
-            child: const Text('DIA 25',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed:(){
-              _scanQR(26);
-            },
-            child: const Text('DIA 26',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed:(){
-              _scanQR(27);
-            },
-            child: const Text('DIA 27',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed:(){
-              _scanQR(28);
-            },
-            child: const Text('DIA 28',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-        ])));
+          child: buildListViewButtons(),
+        ));
+  }
+
+  buildListViewButtons() {
+    return ListView(
+      shrinkWrap: true,
+      padding: const EdgeInsets.all(100.0),
+      children: <Widget>[
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            _scanQR(24);
+          },
+          child: const Text('DIA 24',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+        //Divider(height: 50),
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            _scanQR(25);
+          },
+          child: const Text('DIA 25',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+        //Divider(height: 50),
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            _scanQR(26);
+          },
+          child: const Text('DIA 26',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+        //Divider(height: 50),
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            _scanQR(27);
+          },
+          child: const Text('DIA 27',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+        //Divider(height: 50),
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            _scanQR(28);
+          },
+          child: const Text('DIA 28',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+      ],
+    );
   }
 }

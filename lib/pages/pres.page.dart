@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 
-
 class PresPage extends StatefulWidget {
   @override
   _PresPageState createState() => _PresPageState();
@@ -16,84 +15,86 @@ class _PresPageState extends State<PresPage> {
           title: Text("Presença em Atividades"),
         ),
         body: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: <
-                    Widget>[
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AtivPage()),
-                );
+          child: buildListViewButtons(),
+        ));
+  }
 
-            },
-            child: const Text('DIA 24',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AtivPage()),
-                );
-
-            },
-            child: const Text('DIA 25',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AtivPage()),
-                );
-
-            },
-            child: const Text('DIA 26',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AtivPage()),
-                );
-
-            },
-            child: const Text('DIA 27',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-          Divider(height: 50),
-          const SizedBox(height: 0),
-          RaisedButton(
-            color: Colors.white,
-            textColor: Colors.black,
-            onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AtivPage()),
-                );
-
-            },
-            child: const Text('DIA 28',
-                style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-          ),
-        ])));
+  buildListViewButtons() {
+    return ListView(
+      shrinkWrap: true,
+      padding: const EdgeInsets.all(100.0),
+      children: <Widget>[
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AtivPage()),
+            );
+          },
+          child: const Text('DIA 24',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+        //Divider(height: 50),
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AtivPage()),
+            );
+          },
+          child: const Text('DIA 25',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+        //Divider(height: 50),
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AtivPage()),
+            );
+          },
+          child: const Text('DIA 26',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+        //Divider(height: 50),
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AtivPage()),
+            );
+          },
+          child: const Text('DIA 27',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+        //Divider(height: 50),
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AtivPage()),
+            );
+          },
+          child: const Text('DIA 28',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+      ],
+    );
   }
 }
 
@@ -103,8 +104,6 @@ class AtivPage extends StatefulWidget {
 }
 
 class _AtivPageState extends State<AtivPage> {
-
-
   void _exibirDialogo(String atividade) {
     showDialog(
       context: context,
@@ -165,27 +164,28 @@ class _AtivPageState extends State<AtivPage> {
         title: Text("Presença em Atividades"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index){
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+                child: ListView.builder(
+              itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(atividades[index]),
-                  trailing: IconButton( 
+                  trailing: IconButton(
                     icon: Icon(Icons.camera, color: Colors.blue),
-                    onPressed: (){
+                    onPressed: () {
                       _scanQR(atividades[index]);
                     },
                   ),
-                  leading: Icon(Icons.label_important, color: Colors.blueGrey,),
+                  leading: Icon(
+                    Icons.label_important,
+                    color: Colors.blueGrey,
+                  ),
                 );
               },
               itemCount: atividades.length,
-            )
-          ),
-        ]
-      ),
+            )),
+          ]),
     );
   }
 }
