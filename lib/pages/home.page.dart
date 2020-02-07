@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sc_credenciamento/pages/cred.page.dart';
 
+import 'pres.page.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -30,23 +32,32 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
             const SizedBox(height: 0),
             RaisedButton(
               color: Colors.white,
               textColor: Colors.black,
-              onPressed: () {},
-              child: const Text('CREDENCIAMENTO', style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CredPage()),
+                );
+              },
+              child: const Text('CREDENCIAMENTO',
+                  style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
             ),
-            
             const SizedBox(height: 100),
             RaisedButton(
               color: Colors.white,
               textColor: Colors.black,
-              onPressed: () {},
-              child: const Text(' PRESENÇA\n        EM\nATIVIDADES', style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PresPage()),
+                );
+              },
+              child: const Text(' PRESENÇA\n        EM\nATIVIDADES',
+                  style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
             )
-
           ],
         ),
       ),

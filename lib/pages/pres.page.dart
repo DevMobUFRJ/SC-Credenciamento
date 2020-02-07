@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class CredPage extends StatefulWidget {
+class PresPage extends StatefulWidget {
   @override
-  _CredPageState createState() => _CredPageState();
+  _PresPageState createState() => _PresPageState();
 }
 
-class _CredPageState extends State<CredPage> {
+class _PresPageState extends State<PresPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[200],
       appBar: AppBar(
-        title: Text("Credenciamento"),
+        title: Text("Presença em Atividades"),
       ),
       body: Center(
         child: Column(
