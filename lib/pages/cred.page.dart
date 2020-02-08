@@ -92,6 +92,17 @@ class _CredPageState extends State<CredPage> {
           color: Colors.white,
           textColor: Colors.black,
           onPressed: () {
+            _scanQR(23);
+          },
+          child: const Text('DIA 23',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+        //Divider(height: 50),
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
             _scanQR(24);
           },
           child: const Text('DIA 24',
@@ -128,17 +139,6 @@ class _CredPageState extends State<CredPage> {
             _scanQR(27);
           },
           child: const Text('DIA 27',
-              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-        ),
-        //Divider(height: 50),
-        const SizedBox(height: 20),
-        RaisedButton(
-          color: Colors.white,
-          textColor: Colors.black,
-          onPressed: () {
-            _scanQR(28);
-          },
-          child: const Text('DIA 28',
               style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
         ),
       ],

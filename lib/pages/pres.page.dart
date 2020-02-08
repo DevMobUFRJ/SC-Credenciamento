@@ -34,6 +34,20 @@ class _PresPageState extends State<PresPage> {
               MaterialPageRoute(builder: (context) => AtivPage()),
             );
           },
+          child: const Text('DIA 23',
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
+        ),
+        //Divider(height: 50),
+        const SizedBox(height: 20),
+        RaisedButton(
+          color: Colors.white,
+          textColor: Colors.black,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AtivPage()),
+            );
+          },
           child: const Text('DIA 24',
               style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
         ),
@@ -77,20 +91,6 @@ class _PresPageState extends State<PresPage> {
             );
           },
           child: const Text('DIA 27',
-              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
-        ),
-        //Divider(height: 50),
-        const SizedBox(height: 20),
-        RaisedButton(
-          color: Colors.white,
-          textColor: Colors.black,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => AtivPage()),
-            );
-          },
-          child: const Text('DIA 28',
               style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic)),
         ),
       ],
