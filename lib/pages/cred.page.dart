@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 //import 'package:qrcode_reader/qrcode_reader.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 
+import 'database/database.page.dart';
+
 class CredPage extends StatefulWidget {
   @override
   _CredPageState createState() => _CredPageState();
@@ -60,6 +62,7 @@ class _CredPageState extends State<CredPage> {
       print(qrResult);
       if(qrcodeRegex.hasMatch(qrResult)){
         _exibirDialogo(day);
+        await DatabaseService(day).updateUserData(qrResult);
       }else{
         _exibirDialogoErr(day);
       }
