@@ -28,7 +28,7 @@ class ActivitiesList extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) return new Text('Loading...');
         return new ListView(
-          children: snapshot.data.documents.map((document) {
+          children: snapshot.data.documents.map<Widget>((document) {
             return new Card(
               child: ListTile(
                 title: new Text(document['Nome']),
@@ -39,10 +39,11 @@ class ActivitiesList extends StatelessWidget {
                 ),
                                   trailing: IconButton(
                     icon: Icon(Icons.camera, color: Colors.blue),
-                    onPressed: () {
+                    onPressed: () async {
 
                         final CollectionReference credCollection = Firestore.instance.collection("Atividades").document(this.day).collection("Atividade").document(document.documentID).collection("Presença");
-                        AtivPageState(this.day).scanQR(context, document['Nome'], credCollection);
+                        print("teste");
+                        await AtivPageState(this.day).scanQR(context, document['Nome'], credCollection);
                     },
                   ),
               ),

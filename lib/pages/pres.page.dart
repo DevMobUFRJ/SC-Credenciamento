@@ -120,43 +120,16 @@ class AtivPageState extends State<AtivPage> {
     this.day = day;
   }
 
-  void exibirDialogo(BuildContext context2, String atividade, CollectionReference credCollection) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: new Text("Presença confirmada na atividade $atividade"),
-          content: new Text("Pressione ok para continuar dando presenças"),
-          actions: <Widget>[
-            // define os botões na base do dialogo
-            new FlatButton(
-              child: new Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-                scanQR(context2, atividade, credCollection);
-              },
-            ),
-            /*new FlatButton(
-              child: new Text("Cancelar"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),*/
-          ],
-        );
-      },
-    );
-  }
+  Future<void> _exibirDialogo(BuildContext context2, String atividade, CollectionReference credCollection) {
+return showDialog<void>(
+    context: context2,
+    builder: (BuildContext context) {
 
-  void exibirDialogoErr(BuildContext context2, String atividade, CollectionReference credCollection) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
         return AlertDialog(
-          title: new Text("QR Code inválido"),
+          title: new Text("Presença confirmada na atividade"),
           content: new Text("Pressione ok para continuar dando presenças"),
           actions: <Widget>[
-            // define os botões na base do dialogo
+            // usually buttons at the bottom of the dialog
             new FlatButton(
               child: new Text("OK"),
               onPressed: () {
@@ -166,23 +139,49 @@ class AtivPageState extends State<AtivPage> {
             ),
           ],
         );
-      },
-    );
+
+
+    },
+  );
   }
 
-  Future scanQR(BuildContext context2, String atividade, CollectionReference credCollection) async {
+  Future<void> _exibirDialogoErr(BuildContext context2, String atividade, CollectionReference credCollection) {
+    return showDialog<void>(
+    context: context2,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Not in stock'),
+        content: const Text('This item is no longer available'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+              scanQR(context2, atividade, credCollection);
+            },
+          ),
+        ],
+      );
+    },
+  );
+  }
+
+  Future scanQR(BuildContext context, String atividade, CollectionReference credCollection) async {
+    print("entrei");
     try {
       String qrResult = await BarcodeScanner.scan();
       RegExp qrcodeRegex = RegExp(r'^SC-[0-9]{1,}');
       //Future.delayed(const Duration(seconds: 2), () => "2");
       print(qrResult);
       if(qrcodeRegex.hasMatch(qrResult)){
-        exibirDialogo(context2, atividade, credCollection);
+        _exibirDialogo(context, atividade, credCollection);
         await ActivitiesList(this.day).updateUserData(credCollection, qrResult);
       }else{
-        exibirDialogoErr(context2, atividade, credCollection);
+        _exibirDialogoErr(context, atividade, credCollection);
       }
     } finally {}
+
+    
   }
 
   List<String> atividades = [
