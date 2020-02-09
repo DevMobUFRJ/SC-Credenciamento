@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'database/activities.page.dart';
 
 class PresPage extends StatefulWidget {
   @override
@@ -31,7 +33,7 @@ class _PresPageState extends State<PresPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AtivPage()),
+              MaterialPageRoute(builder: (context) => AtivPage(23)),
             );
           },
           child: const Text('DIA 23',
@@ -45,7 +47,7 @@ class _PresPageState extends State<PresPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AtivPage()),
+              MaterialPageRoute(builder: (context) => AtivPage(24)),
             );
           },
           child: const Text('DIA 24',
@@ -59,7 +61,7 @@ class _PresPageState extends State<PresPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AtivPage()),
+              MaterialPageRoute(builder: (context) => AtivPage(25)),
             );
           },
           child: const Text('DIA 25',
@@ -73,7 +75,7 @@ class _PresPageState extends State<PresPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AtivPage()),
+              MaterialPageRoute(builder: (context) => AtivPage(26)),
             );
           },
           child: const Text('DIA 26',
@@ -87,7 +89,7 @@ class _PresPageState extends State<PresPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AtivPage()),
+              MaterialPageRoute(builder: (context) => AtivPage(27)),
             );
           },
           child: const Text('DIA 27',
@@ -99,12 +101,26 @@ class _PresPageState extends State<PresPage> {
 }
 
 class AtivPage extends StatefulWidget {
+
+  String day;
+
+  AtivPage(int day){
+    this.day = "Dia $day";
+  }
+
   @override
-  _AtivPageState createState() => _AtivPageState();
+  AtivPageState createState() => AtivPageState(day);
 }
 
-class _AtivPageState extends State<AtivPage> {
-  void _exibirDialogo(String atividade) {
+class AtivPageState extends State<AtivPage> {
+
+  String day;
+
+  AtivPageState(String day){
+    this.day = day;
+  }
+
+  void exibirDialogo(BuildContext context, String atividade, CollectionReference credCollection) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -117,7 +133,7 @@ class _AtivPageState extends State<AtivPage> {
               child: new Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
-                _scanQR(atividade);
+                scanQR(context, atividade, credCollection);
               },
             ),
             /*new FlatButton(
@@ -132,7 +148,7 @@ class _AtivPageState extends State<AtivPage> {
     );
   }
 
-  void _exibirDialogoErr(String atividade) {
+  void exibirDialogoErr(BuildContext context, String atividade, CollectionReference credCollection) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -145,7 +161,7 @@ class _AtivPageState extends State<AtivPage> {
               child: new Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
-                _scanQR(atividade);
+                scanQR(context, atividade, credCollection);
               },
             ),
           ],
@@ -154,16 +170,17 @@ class _AtivPageState extends State<AtivPage> {
     );
   }
 
-  Future _scanQR(String atividade) async {
+  Future scanQR(BuildContext context, String atividade, CollectionReference credCollection) async {
     try {
       String qrResult = await BarcodeScanner.scan();
       RegExp qrcodeRegex = RegExp(r'^SC-[0-9]{1,}');
       //Future.delayed(const Duration(seconds: 2), () => "2");
       print(qrResult);
       if(qrcodeRegex.hasMatch(qrResult)){
-        _exibirDialogo(atividade);
+        await ActivitiesList(this.day).updateUserData(credCollection, qrResult);
+        exibirDialogo(context, atividade, credCollection);
       }else{
-        _exibirDialogoErr(atividade);
+        exibirDialogoErr(context, atividade, credCollection);
       }
     } finally {}
   }
@@ -185,6 +202,16 @@ class _AtivPageState extends State<AtivPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    return Scaffold(
+      backgroundColor: Colors.blueGrey[200],
+      appBar: AppBar(
+        title: Text("Presença em Atividades"),
+      ),
+      body: ActivitiesList(this.day),
+    );
+
+    /*
     return Scaffold(
       backgroundColor: Colors.blueGrey[200],
       appBar: AppBar(
@@ -213,6 +240,11 @@ class _AtivPageState extends State<AtivPage> {
               itemCount: atividades.length,
             )),
           ]),
-    );
+    );*/
   }
+
 }
+
+
+
+
