@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sc_credenciamento/pages/cred.page.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'pres.page.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,10 +15,31 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
+  void _exibirDialogo() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text("Sincronização Concluída"),
+          content: new Text("Pressione ok para continuar"),
+          actions: <Widget>[
+            // define os botões na base do dialogo
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _sync() async{
+    await Firestore.instance.collection("Atividades").document("Sync").setData({
     });
+    _exibirDialogo(); 
   }
 
   @override
@@ -61,11 +82,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      /*floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),*/ // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: FloatingActionButton(
+        onPressed: _sync,
+        tooltip: 'Sincronizar',
+        child: Icon(Icons.autorenew),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
