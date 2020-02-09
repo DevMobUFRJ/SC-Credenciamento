@@ -120,7 +120,7 @@ class AtivPageState extends State<AtivPage> {
     this.day = day;
   }
 
-  void exibirDialogo(BuildContext context, String atividade, CollectionReference credCollection) {
+  void exibirDialogo(BuildContext context2, String atividade, CollectionReference credCollection) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -133,7 +133,7 @@ class AtivPageState extends State<AtivPage> {
               child: new Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
-                scanQR(context, atividade, credCollection);
+                scanQR(context2, atividade, credCollection);
               },
             ),
             /*new FlatButton(
@@ -148,7 +148,7 @@ class AtivPageState extends State<AtivPage> {
     );
   }
 
-  void exibirDialogoErr(BuildContext context, String atividade, CollectionReference credCollection) {
+  void exibirDialogoErr(BuildContext context2, String atividade, CollectionReference credCollection) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -161,7 +161,7 @@ class AtivPageState extends State<AtivPage> {
               child: new Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
-                scanQR(context, atividade, credCollection);
+                scanQR(context2, atividade, credCollection);
               },
             ),
           ],
@@ -170,17 +170,17 @@ class AtivPageState extends State<AtivPage> {
     );
   }
 
-  Future scanQR(BuildContext context, String atividade, CollectionReference credCollection) async {
+  Future scanQR(BuildContext context2, String atividade, CollectionReference credCollection) async {
     try {
       String qrResult = await BarcodeScanner.scan();
       RegExp qrcodeRegex = RegExp(r'^SC-[0-9]{1,}');
       //Future.delayed(const Duration(seconds: 2), () => "2");
       print(qrResult);
       if(qrcodeRegex.hasMatch(qrResult)){
-        exibirDialogo(context, atividade, credCollection);
+        exibirDialogo(context2, atividade, credCollection);
         await ActivitiesList(this.day).updateUserData(credCollection, qrResult);
       }else{
-        exibirDialogoErr(context, atividade, credCollection);
+        exibirDialogoErr(context2, atividade, credCollection);
       }
     } finally {}
   }
