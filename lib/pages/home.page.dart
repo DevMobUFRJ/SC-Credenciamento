@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sc_credenciamento/pages/cred.page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'pres.page.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);

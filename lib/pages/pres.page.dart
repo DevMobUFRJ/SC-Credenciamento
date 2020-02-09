@@ -126,7 +126,7 @@ return showDialog<void>(
     builder: (BuildContext context) {
 
         return AlertDialog(
-          title: new Text("Presença confirmada na atividade"),
+          title: new Text("Presença confirmada na atividade $atividade"),
           content: new Text("Pressione ok para continuar dando presenças"),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
@@ -150,8 +150,8 @@ return showDialog<void>(
     context: context2,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('Not in stock'),
-        content: const Text('This item is no longer available'),
+        title: Text('QR Code inválido'),
+        content: const Text('Pressione ok para continuar dando presenças'),
         actions: <Widget>[
           FlatButton(
             child: Text('Ok'),
