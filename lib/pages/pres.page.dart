@@ -177,8 +177,8 @@ class AtivPageState extends State<AtivPage> {
       //Future.delayed(const Duration(seconds: 2), () => "2");
       print(qrResult);
       if(qrcodeRegex.hasMatch(qrResult)){
-        await ActivitiesList(this.day).updateUserData(credCollection, qrResult);
         exibirDialogo(context, atividade, credCollection);
+        await ActivitiesList(this.day).updateUserData(credCollection, qrResult);
       }else{
         exibirDialogoErr(context, atividade, credCollection);
       }
