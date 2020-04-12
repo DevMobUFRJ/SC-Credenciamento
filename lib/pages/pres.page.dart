@@ -203,9 +203,19 @@ return showDialog<void>(
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.blueGrey[200],
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Presença em Atividades"),
+        title: Center(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(day),
+              Padding(padding: EdgeInsets.only(left: 14)),
+              Icon(Icons.calendar_today)
+            ],
+          ),
+        ),
+        automaticallyImplyLeading: false,
       ),
       body: ActivitiesList(this.day),
     );

@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Semana da Computação',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+//        primarySwatch: MaterialColor..fromRGBO(0x10, 0x15, 0x4A, 1),
+        primaryColor: Color.fromRGBO(0x10, 0x15, 0x4A, 1),
       ),
       //home: CredPage()
       home:SplashScreenPage(),
